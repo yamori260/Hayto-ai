@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAYTO AI</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #101116;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 18px;
+  background: #191a21;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+}
+
+.welcome {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.welcome p { color: #92939e; }
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  padding: 13px 16px;
+  border-radius: 15px;
+  max-width: 85%;
+  line-height: 1.5;
+}
+
+.user {
+  background: #343640;
+  align-self: flex-end;
+}
+
+.bot {
+  background: #202129;
+  align-self: flex-start;
+}
+
+footer {
+  padding: 12px;
+  background: #191a21;
+}
+
+.input-area {
+  display: flex;
+  gap: 9px;
+  background: #292a33;
+  border-radius: 15px;
+  padding: 7px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  background: white;
+  color: #111;
+  border: none;
+  border-radius: 11px;
+  padding: 0 16px;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<header>◈ HAYTO AI</header>
+
+<main>
+  <div class="welcome" id="welcome">
+    <h1>Чем могу помочь?</h1>
+    <p>Твой персональный искусственный интеллект</p>
+  </div>
+  <div id="messages"></div>
+</main>
+
+<footer>
+  <div class="input-area">
+    <input id="input" placeholder="Напиши сообщение...">
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</footer>
+
+<script>
+function sendMessage() {
+  const input = document.getElementById("input");
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  document.getElementById("welcome").style.display = "none";
+
+  const messages = document.getElementById("messages");
+
+  const user = document.createElement("div");
+  user.className = "message user";
+  user.textContent = text;
+  messages.appendChild(user);
+
+  const bot = document.createElement("div");
+  bot.className = "message bot";
+  bot.textContent = "Я пока учусь! Скоро подключим DeepSeek.";
+  messages.appendChild(bot);
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
